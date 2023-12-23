@@ -1,0 +1,321 @@
+## Set file for zebrafish_cb1r.ode on Fri Apr 9 2021
+12   Number of equations and auxiliaries
+54   Number of parameters
+# Numerical stuff
+1    nout
+40    nullcline mesh
+8   Qual RK
+70000  total
+0.02  DeltaT
+0  T0
+10000  Transient
+500001  Bound
+1e-12  DtMin
+1  DtMax
+0.001  Tolerance
+0.001  Abs. Tolerance
+0  Max Delay
+100   Eigenvector iterates
+0.001  Eigenvector tolerance
+0.001  Newton tolerance
+0  Poincare plane
+1e-05  Boundary value tolerance
+1e-05  Boundary value epsilon
+20   Boundary value iterates
+0   Poincare None
+1   Poincare variable
+1   Poincare sign
+0   Stop on Section
+0   Delay flag
+27671.7  Current time
+27671.7  Last Time
+1   MyStart
+1   INFLAG
+# Delays
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+# Bndry conds
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+# Old ICs
+-33.269  MV
+0.0048411  MW
+3.3  MCA
+0.1  IGSYN
+-29  EV
+0.007  EW
+4.7  ECA
+0.01  ES
+-29  I2V
+0.007  I2W
+4.7  I2CA
+0.01  I2S
+# Ending  ICs
+-44.48869117506184  MV
+0.0012974808884466  MW
+1.637502859004687  MCA
+1.620976412061483  IGSYN
+-35.07962091260771  EV
+0.00393611693821151  EW
+13.08936158310454  ECA
+0.00785955161238506  ES
+1.011388100630907  I2V
+0.3144245377376113  I2W
+48.05354449522645  I2CA
+0.9909331810567539  I2S
+# Parameters
+-1.2  vf1
+18  vf2
+12  vf3
+17  vf4
+4  gca
+120  vca
+2  gl
+8  gk
+-60  vl
+-84  vk
+0.23  phi
+1  cm
+1  kca
+0.25  gkca
+0.005  eps
+0.19  mu
+10  ca0
+31  mbiapp
+20000  it0
+1  fre
+2  dur
+0  thetas
+4  ss
+0.5  gsynmm
+0.029  sm2
+-50  mvsyn
+20  igsynmax
+10  mca0
+10000  tauagm
+4  mgca
+0.3  mgkca
+0.9  mkca
+0.25  cb1rim
+0.3  cb1rem
+0.15  gsynem
+0.5  gsynim
+43.9  ebiapp
+45  eiapp
+30  evsyn
+15  ealpha
+0.3  ebeta
+20  ecm
+0.5  egsyni
+0.005  eeps
+36  ibiapp
+-50  ivsyn
+3  ialpha
+0.3  ibeta
+20  icm
+36  i2biapp
+8.5  i2alpha
+0.046  i2beta
+0.3  cb1rei
+0.7  gsynei
+# Graphics
+0.7071097251469876  rm
+-0.4999999999826661  rm
+0.4999958366025516  rm
+0.7071038372138505  rm
+0.5000041633974484  rm
+-0.4999999999826661  rm
+0  rm
+0.7071038372138505  rm
+0.7071097251469876  rm
+0    
+1    
+1    
+1    
+0    
+0    
+1    
+1    
+1    
+0    
+0    
+1    
+1    
+1    
+0    
+0    
+1    
+1    
+1    
+0    
+0    
+1    
+1    
+1    
+0    
+0    
+1    
+1    
+1    
+0    
+0    
+1    
+1    
+1    
+0    
+0    
+1    
+1    
+1    
+0    
+0    
+1    
+1    
+1    
+0    
+0    
+1    
+1    
+1    
+0    
+-1000   
+1000   
+0    
+0   3DFlag
+1   Timeflag
+0   Colorflag
+0   Type
+1  color scale
+0   minscale
+70000   xmax
+0   xmin
+39.8256950378418   ymax
+-53.27024459838867   ymin
+12   zmax
+-12   zmin
+35000   
+2.857142857142857e-05   
+-6.722274780273438   
+0.02148321406728305   
+0   
+0.08333333333333333   
+45   Theta
+45   Phi
+0    xshft
+0    yshft
+0    zshft
+0   xlo
+-53.27024459838867   ylo
+10000   
+-40   
+70000   xhi
+39.8256950378418   yhi
+70000   
+30   
+# Transpose variables etc
+MV
+2   n columns
+1   n rows
+1   row skip
+1   col skip
+1   row 0
+# Coupling stuff for H funs
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+# Array plot stuff
+
+1   NCols
+0   Row 1
+50   NRows
+8   RowSkip
+0  Zmin
+1  Zmax
+# Torus information 
+0    Torus flag 1=ON
+6.283185307179586  Torus period
+# Range information
+vf1
+-1   eq-range stab col
+0   shoot flag 1=on
+10   eq-range steps
+0  eq_range low
+1  eq_range high
+MV
+MV
+20   Range steps
+0   Cycle color 1=on
+1   Reset data 1=on
+1   Use old I.C.s 1=yes
+0  Par1 low
+0  Par2 low
+1  Par1 high
+1  Par2 high
+vf1
+0   BVP side
+0   color cycle flag 1=on
+10   BVP range steps
+0  BVP range low
+1  BVP range high
+RHS etc ...
+dMV/dT=(MBIAPP-E2MSYN-I2MSYN-MGCA*MINF(MV)*(MV-VCA)-GK*MW*(MV-VK)-GL*(MV-VL)-MGKCA*(MCA/(MCA+CA0))*(MV-VK)-GSYNMM*SM2*(MV-MVSYN))/CM
+dMW/dT=PHI*(WINF(MV)-MW)/TAUW(MV)
+dMCA/dT=EPS*(-MU*GCA*MINF(MV)*(MV-VCA)-MKCA*MCA)
+dIGSYN/dT=(IGSYNMAX/(MCA+MCA0)-IGSYN)/TAUAGM
+dEV/dT=(EBIAPP+EIAPP*(HEAV(T-IT0)*HEAV(SIN(PI*2*FRE/1000*T)-SIN(5*PI/2-PI*DUR*FRE/1000)))-GCA*MINF(EV)*(EV-VCA)-GK*EW*(EV-VK)-GL*(EV-VL)-GKCA*(ECA/(ECA+CA0))*(EV-VK))/ECM
+dEW/dT=PHI*(WINF(EV)-EW)/TAUW(EV)
+dECA/dT=EPS*(-MU*GCA*MINF(EV)*(EV-VCA)-KCA*ECA)
+dES/dT=EALPHA*(1-ES)*ESINF(EV)-EBETA*ES
+dI2V/dT=(I2BIAPP-E2ISYN2-GCA*MINF(I2V)*(I2V-VCA)-GK*I2W*(I2V-VK)-GL*(I2V-VL)-GKCA*(I2CA/(I2CA+CA0))*(I2V-VK))/ICM
+dI2W/dT=PHI*(WINF(I2V)-I2W)/TAUW(I2V)
+dI2CA/dT=EPS*(-MU*GCA*MINF(I2V)*(I2V-VCA)-KCA*I2CA)
+dI2S/dT=I2ALPHA*(1-I2S)*ISINF(I2V)-I2BETA*I2S
+
+where ...
+E2MSYN =  GSYNEM*IGSYN*(1+CB1REM)*ES*(MV-EVSYN)
+   
+I2MSYN =  GSYNIM*IGSYN*(1-CB1RIM)*I2S*(MV-IVSYN)
+   
+E2ISYN2 =  GSYNEI*IGSYN*ES*(1+CB1REI)*(I2V-EVSYN)
+   
+
+User-defined functions:
+MINF(V) = 0.5*(1+TANH((V-VF1)/VF2))
+  
+WINF(V) = 0.5*(1+TANH((V-VF3)/VF4))
+  
+TAUW(V) = 1/COSH((V-VF3)/(2*VF4))
+  
+ESINF(V) = 1./(1.+EXP(-(V+THETAS)/SS))
+  
+ISINF(V) = 1./(1.+EXP(-(V+THETAS)/SS))
+  

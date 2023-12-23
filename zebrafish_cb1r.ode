@@ -1,0 +1,89 @@
+#SA Orr, S Ahn, C Park, TH Miller, M Kassai, FA Issa (2021). #SOCIAL EXPERIENCE REGULATES ENDOCANNABINOIDS’ MODULATION OF #ZEBRAFISH STARTLE ESCAPE AND LOCOMOTOR BEHAVIORS. Frontiers in #Behavioral Neuroscience, 15:88
+#URL={https://www.frontiersin.org/article/10.3389/fnbeh.2021.668589},       
+#DOI={10.3389/fnbeh.2021.668589}, 
+
+######################
+# Mauthner-cell parameters
+par vf1=-1.2,vf2=18,vf3=12,vf4=17,gca=4,vca=120,gl=2
+par gk=8,vl=-60,vk=-84,phi=0.23
+par cm=1,kca=1,gkca=0.25,eps=0.005,mu=0.19,ca0=10
+par mbiapp=31,it0=20000
+par fre=1,dur=2,thetas=0,ss=4
+
+par gsynmm=0.5,sm2=0.029,mvsyn=-50
+par igsynmax=20,mca0=10,tauagm=10000
+par mgca=4,mgkca=0.3,mkca=0.9
+par cb1rim=0.2,cb1rem=0.27,gsynem=0.15,gsynim=0.5
+
+
+# M-cell functions
+minf(v)=0.5*(1+tanh((v-vf1)/vf2))
+winf(v)=0.5*(1+tanh((v-vf3)/vf4))
+tauw(v)=1/cosh((v-vf3)/(2*vf4))
+
+# Synaptic inputs from E -> M
+e2msyn = gsynem*igsyn*(1+cb1rem)*es*(mv-evsyn)
+
+# Synaptic inputs from I -> M
+i2msyn = gsynim*igsyn*(1-cb1rim)*i2s*(mv-ivsyn)
+
+# Mauthner-cell equations
+mv' = (mbiapp-e2msyn-i2msyn-mgca*minf(mv)*(mv-vca)-gk*mw*(mv-VK)-gl*(mv-Vl)-mgkca*(mca/(mca+ca0))*(mv-VK)-gsynmm*sm2*(mv-mvsyn))/cm
+mw' = phi*(winf(mv)-mw)/tauw(mv)
+mca' = eps*(-mu*gca*minf(mv)*(mv-vca) - mkca*mca)
+igsyn'=(igsynmax/(mca+mca0)-igsyn)/tauagm
+
+
+##################
+# Excitatory cell parameters
+par ebiapp=43.9,eiapp=60,evsyn=30,ealpha=15,ebeta=0.3
+par ecm=20,egsyni=0.5,eeps=0.005
+
+# E-cell functions
+esinf(v)=1./(1.+exp(-(v+thetas)/ss))
+
+# Excitatory cell equations 
+ev' = (ebiapp+eiapp*(heav(t-it0)*heav(sin(pi*2*fre/1000*t)-sin(5*pi/2-pi*dur*fre/1000)))-gca*minf(ev)*(ev-vca)-gk*ew*(ev-VK)-gl*(ev-Vl)-gkca*(eca/(eca+ca0))*(ev-VK))/ecm
+ew' = phi*(winf(ev)-ew)/tauw(ev)
+eca' = eps*(-mu*gca*minf(ev)*(ev-vca) - kca*eca)
+es' = ealpha*(1-es)*esinf(ev)-ebeta*es
+
+
+###################
+# Inhibitory (GABA and Glycine) cell parameters 
+par ibiapp=36,ivsyn=-50,ialpha=3,ibeta=0.3,icm=20
+par i2biapp=36,i2alpha=8.5,i2beta=0.046
+par cb1rei=0.32,gsynei=0.75
+
+# Synaptic input from E cell to I cell
+e2isyn2 = gsynei*igsyn*es*(1+cb1rei)*(i2v-evsyn)
+
+# I-cell functions
+isinf(v)=1./(1.+exp(-(v+thetas)/ss))
+
+# Inhibitory cell equations
+i2v' = (i2biapp-e2isyn2-gca*minf(i2v)*(i2v-vca)-gk*i2w*(i2v-VK)-gl*(i2v-Vl)-gkca*(i2ca/(i2ca+ca0))*(i2v-VK))/icm
+i2w' = phi*(winf(i2v)-i2w)/tauw(i2v)
+i2ca' = eps*(-mu*gca*minf(i2v)*(i2v-vca) - kca*i2ca)
+i2s' = i2alpha*(1-i2s)*isinf(i2v)-i2beta*i2s
+
+
+################
+# initial conditions
+init mv=-33.269,mw=0.0048411,mca=3.3,igsyn=0.1
+init ev=-29,ew=0.007,eca=4.7,es=0.01
+init i2v=-29,i2w=0.007,i2ca=4.7,i2s=0.01
+#################
+
+
+
+@ dt=.02,total=70000,njmp=5,trans=0,meth=qualrk,xp=t,yp=mv,xlo=10000,xhi=70000,ylo=-40,yhi=30.,bound=500001,maxstor=500001
+
+done
+
+
+
+
+
+
+
